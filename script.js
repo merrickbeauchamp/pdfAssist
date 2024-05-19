@@ -2,6 +2,8 @@ const fileInput = document.getElementById('fileInput');
 const uploadButton = document.getElementById('uploadButton');
 const table = document.getElementById('table');
 
+
+
  function buttonClick(text, buttonClicked) {
 
   if(text) {
@@ -60,7 +62,7 @@ let data = {
     
     let rows = ""
     for(let z = 1; z < Object.entries(data).length + 10; z++) {
-      rows += `<tr><td>${z}</td><td>${data[z]?.SKU || "ERROR"}<button onclick="buttonClick('${data[z]?.SKU}', this)">Copy</button></td><td>${data[z]?.QTY || "ERROR"}<button onclick="buttonClick('${data[z]?.QTY}', this)">Copy</button></td><td>${data[z]?.PRICE || "ERROR"}<button onclick="buttonClick('${data[z]?.PRICE}', this)">Copy</button></td><td>${data[z]?.EXTENSION || "ERROR"}<button onclick="buttonClick('${data[z]?.EXTENSION}', this)">Copy</button></td></tr>`
+      rows += `<tr><td>${z}</td><td>${data[z]?.SKU || "ERROR"}</td><td>${data[z]?.QTY || "ERROR"}</td><td>${data[z]?.PRICE || "ERROR"}</td><td>${data[z]?.EXTENSION || "ERROR"}</td></tr>`
     }
     table.innerHTML = `
     <tr>
@@ -71,6 +73,8 @@ let data = {
     <th>EXTENSION</th>
     </tr>` + rows
     console.log(table.innerHTML)
+    var table2excel = new Table2Excel();
+    table2excel.export(document.querySelectorAll("table"));
   };
 
   reader.readAsText(file);
